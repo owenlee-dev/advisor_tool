@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>User Registration</title>
+    <link rel="stylesheet" href='../static/css/main.css'>
+    <link rel="stylesheet"  href='../static/css/login.css'>
+  </head>
+  <body>
+    <div class="container">
+      <div class="container_form">
+        <div class="container_header">
+          <h1>USER REGISTRATION</h1>
+        </div>
+        <form class="input_container" action="/register" method="POST">
+          <input class="text_input" type="email" id="email" name='email' placeholder="Email">
+          <input class="text_input" type="password" id="password" name='password' placeholder="Password">
+          <input class="button_input" type="submit" value="Register">
+        </form>
+        {% if get_flashed_messages() %}
+            <p class="error_message">{{get_flashed_messages()[0]}}</p>
+          {% endif %}
+        <div class="navigate_container">
+          <p>Already have an account -</p>
+          <a class="navigate_tag" href="{{url_for('login_user')}}"> Log in</a>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
+
+
