@@ -2,6 +2,7 @@ import csv
 from os import remove
 from datetime import datetime, timedelta
 from indepProject.models.dataset import Dataset
+from indepProject.rank import populate_rank
 
 if(__name__!='__main__'):
   from ..models import Enrollment, Student, Course, db
@@ -37,13 +38,17 @@ def roundTime(dt=None, roundTo=1):
 #END HELPER METHODS_________________________________________________________________________
 
 # Function to upload all 3 data files, extract data and store in db
-def upload_and_extract(person_file, course_file,transfer_file=None):
+def upload_and_extract():
+  person_file="indepProject/data/dataset/personData.txt"
+  course_file="indepProject/data/dataset/courseData.txt"
+  transfer_file="indepProject/data/dataset/transferData.txt"
   now=roundTime()
   insert_dataset(now)
   upload_course_data(course_file,now)
   upload_person_data(person_file,now)
   build_enrollments(course_file,now)
-
+  populate_rank(now)
+  return "success"
 
 # Function to extract data from an input file and save in a list of dictionaries
 def text_to_dictionary_list(input_file):
@@ -107,5 +112,3 @@ def build_enrollments(input_file,upload_set):
 
   for enrollment in no_dups:
     insert_enrollment(enrollment["Course"],enrollment["Student_ID"],enrollment["Term"],enrollment["Grade"],upload_set)    
-
-

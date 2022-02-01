@@ -7,6 +7,8 @@ class Student(db.Model):
   campus = db.Column(db.String(5), default=None)
   program=db.Column(db.String(10), default=None)
   start_date=db.Column(db.String(10), default=None)
+  prereq_rank=db.Column(db.String(4),default=None)
+  credit_rank=db.Column(db.String(4),default=None)
   dataset=db.Column(db.DateTime,db.ForeignKey('dataset.upload_datetime'),primary_key=True)
 
   # def __init__ (self,student_id, name, dataset):

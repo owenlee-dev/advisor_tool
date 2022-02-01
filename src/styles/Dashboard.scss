@@ -1,0 +1,21 @@
+@import '_global.scss';
+
+.dashboard-container{
+  display: flex;
+  justify-content:space-around;
+  align-items: center;
+  margin-top:3%;
+  
+  .table-container{
+    height:80vh;
+  }
+  
+  .count-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: lightcoral;
+    width:300px;
+    margin-right: 1%;
+  }
+}

@@ -1,24 +1,68 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useMemo } from "react";
+import "bootstrap/dist/css/bootstrap.min.css";
+import { Route, Routes, BrowserRouter as Router } from "react-router-dom";
+import Layout from "./components/Layout";
+import Configuration from "./components/Configuration";
+import Dashboard from "./components/Dashboard";
+import DataContext from "./components/DataContext";
 
 function App() {
+  const [masterData, setMasterData] = useState([]);
+  const [rankMethod, setRankMethod] = useState("Course");
+  const [dataLoading, setDataLoading] = useState(false);
+
+  const providerValue = useMemo(
+    () => ({
+      masterData,
+      setMasterData,
+      rankMethod,
+      setRankMethod,
+      dataLoading,
+      setDataLoading,
+    }),
+    [
+      masterData,
+      setMasterData,
+      rankMethod,
+      setRankMethod,
+      dataLoading,
+      setDataLoading,
+    ]
+  );
+
+  // Function to register a user in the database
+  const [key, setKey] = useState("dashboard");
+  // const registerUser = () => {
+  //   let formData = new FormData();
+  //   formData.append("email", "tesst.test");
+  //   formData.append("password", "gdd");
+
+  //   axios({
+  //     url: "/test_route",
+  //     method: "GET",
+  //     data: formData,
+  //   })
+  //     .then((res) => {
+  //       console.log(res);
+  //     })
+  //     .catch((err) => {
+  //       console.error(err);
+  //     });
+  // };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <DataContext.Provider value={providerValue}>
+      <Router>
+        <Routes>
+          <Route path="/" element={<Layout />}>
+            <Route index element={<Dashboard />} />
+            <Route path="*" element={<Dashboard />} />
+            <Route path="dashboard" element={<Dashboard />} />
+            <Route path="configuration" element={<Configuration />} />
+          </Route>
+        </Routes>
+      </Router>
+    </DataContext.Provider>
   );
 }
 

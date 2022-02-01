@@ -1,0 +1,57 @@
+@import '_global.scss';
+
+.upload-container{
+  margin:3% 0px ;
+  display:flex;
+  align-items: center;
+  flex-direction: column;
+
+  .upload-card{
+    width:40%;
+    margin:1%;
+    padding:10px;
+    display:flex;
+  }
+
+  .btn-container{
+    display:flex;
+    margin:10px 0px;
+    flex-direction: row;
+  }
+
+  .btn{
+    background-color: slategray;
+    border-color:rgb(80, 80, 80);
+  }
+
+  .card-body{
+    padding:10px 0px;
+
+    .card-form{
+      margin:10px 0px;
+    }
+  }
+
+  .dataset{
+    padding:0px;
+  }
+  .upload{
+    margin-top:5px; 
+  }
+
+  .set{
+    margin-left:5px;
+  }
+
+  .error-txt{
+    color:red;
+  }
+
+  .btn-spinner{
+    display: flex;
+  }
+  .spinner{
+    margin:5px
+  }
+}
+
