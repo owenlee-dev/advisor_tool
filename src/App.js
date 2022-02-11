@@ -11,6 +11,7 @@ function App() {
   const [rankMethod, setRankMethod] = useState("Course");
   const [dataLoading, setDataLoading] = useState(false);
 
+  // state management - useMemo used so that it only fetches when it needs to
   const providerValue = useMemo(
     () => ({
       masterData,

@@ -21,7 +21,7 @@ const MasterList = () => {
     } else {
       setData(masterData);
     }
-  }, []);
+  }, [rankMethod]);
 
   const columns = useMemo(
     () => [
@@ -34,20 +34,16 @@ const MasterList = () => {
         accessor: "name",
       },
       {
-        Header: "Program",
-        accessor: "program",
-      },
-      {
-        Header: "Campus",
-        accessor: "campus",
-      },
-      {
         Header: "Rank",
         accessor: "rank",
       },
       {
         Header: "Status",
         accessor: "status",
+      },
+      {
+        Header: "Campus",
+        accessor: "campus",
       },
     ],
     []

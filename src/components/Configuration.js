@@ -12,9 +12,8 @@ import api from "../api/api";
 import DataContext from "./DataContext";
 
 /**
-Bug?? --> Can load data in with set config and prereq file. But then delete the config file and prereq file and the data persists
-
-Data is loaded with the last prereq and config file loaded
+TODO Give live updates about load and extraction of data
+TODO Workshop messages to the user to add clarity 
 */
 
 const Configuration = () => {
@@ -123,47 +122,6 @@ const Configuration = () => {
     <div className="upload-container">
       <Card border="secondary" className="upload-card">
         <Card.Header>
-          <h2>Configuration File</h2>
-        </Card.Header>
-        <Card.Body className="card-body">
-          Upload a new XML configuration file
-          <Form onSubmit={handleConfigSubmit} className="card-form">
-            <Form.Control type="file" onChange={configChangeHandler} />
-            <Button className="btn upload" type="submit">
-              Upload
-            </Button>
-          </Form>
-        </Card.Body>
-      </Card>
-
-      {/* Has not yet been hooked up to accept file input */}
-      <Card border="secondary" className="upload-card">
-        <Card.Header>
-          <h2>Rank Prerequisites</h2>
-        </Card.Header>
-        <Card.Body className="card-body">
-          Select rank calculation method and upload the configuration file
-          <div className="btn-container">
-            <DropdownButton className="btn dataset" title={rankMethod}>
-              <Dropdown.Item onClick={() => setRankMethod("Course")}>
-                Courses
-              </Dropdown.Item>
-              <Dropdown.Item onClick={() => setRankMethod("Credit Hours")}>
-                Credit Hours
-              </Dropdown.Item>
-            </DropdownButton>
-          </div>
-          <Form onSubmit={handlePrereqSubmit} className="card-form">
-            <Form.Control type="file" onChange={prereqChangeHandler} />
-            <Button className="btn upload" type="submit">
-              Upload
-            </Button>
-          </Form>
-        </Card.Body>
-      </Card>
-
-      <Card border="secondary" className="upload-card">
-        <Card.Header>
           <h2>Data Set</h2>
         </Card.Header>
 
@@ -194,6 +152,36 @@ const Configuration = () => {
                 <Spinner className="spinner" animation="border" />
               )}
             </div>
+          </Form>
+        </Card.Body>
+      </Card>
+      <Card border="secondary" className="upload-card">
+        <Card.Header>
+          <h2>Configuration File</h2>
+        </Card.Header>
+        <Card.Body className="card-body">
+          Upload a new XML configuration file
+          <Form onSubmit={handleConfigSubmit} className="card-form">
+            <Form.Control type="file" onChange={configChangeHandler} />
+            <Button className="btn upload" type="submit">
+              Upload
+            </Button>
+          </Form>
+        </Card.Body>
+      </Card>
+
+      {/* Has not yet been hooked up to accept file input */}
+      <Card border="secondary" className="upload-card">
+        <Card.Header>
+          <h2>Rank Prerequisites</h2>
+        </Card.Header>
+        <Card.Body className="card-body">
+          Select rank calculation method and upload the configuration file
+          <Form onSubmit={handlePrereqSubmit} className="card-form">
+            <Form.Control type="file" onChange={prereqChangeHandler} />
+            <Button className="btn upload" type="submit">
+              Upload
+            </Button>
           </Form>
         </Card.Body>
       </Card>

@@ -1,7 +1,8 @@
 import os
+import json
 from indepProject import app
 from flask import render_template, session, request, flash, redirect, url_for
-from .tools import upload_and_extract, text_to_dictionary_list,get_masterlist_data
+from .tools import upload_and_extract,get_state_variables, text_to_dictionary_list,get_masterlist_data,get_matrix_courses
 from .models.shared import db
 from .models import User, Student
 
@@ -65,9 +66,9 @@ def upload_dataset():
     request.files.get('courseData').save("indepProject/data/dataset/courseData.txt")
     request.files.get('transferData').save("indepProject/data/dataset/transferData.txt")
     res=upload_and_extract()
-    os.remove("indepProject/data/dataset/personData.txt");
-    os.remove("indepProject/data/dataset/courseData.txt");
-    os.remove("indepProject/data/dataset/transferData.txt");
+    os.remove("indepProject/data/dataset/personData.txt")
+    os.remove("indepProject/data/dataset/courseData.txt")
+    os.remove("indepProject/data/dataset/transferData.txt")
     return res
 
   return "failed to upload data set"
@@ -88,7 +89,21 @@ def upload_prereq():
 def get_masterlist():
   rank_method=request.args['rank_method']
   return get_masterlist_data(rank_method)
-  
+
+@app.route("/get_app_state",methods=['GET'])
+def get_app_state():
+  return get_state_variables();
+
+@app.route("/set_global_rank",methods=['POST'])
+def set_global_state():
+  if request.method=="POST":
+    with open('indepProject/data/state/state.json','r') as file:
+      json_data=json.load(file)
+      json_data['rankMethod']=request.form['rankMethod']
+      with open('indepProject/data/state/state.json','w') as file:
+        json.dump(json_data,file,indent=4)   
+    return "success"
+
 # Route will return true if there is a prereq file loaded into the system
 @app.route("/check_for_prereq",methods=['GET'])
 def check_for_prereq():
@@ -110,6 +125,8 @@ def check_for_config():
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 @app.route("/test_function",methods=['GET'])
 def test_function():
+  to_return=get_matrix_courses('2018-19')
+  print(to_return)
   return "this is a test function"
 
 

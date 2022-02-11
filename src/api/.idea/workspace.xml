@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="3719b39a-f672-4c99-9a47-e51e5a64915d" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../../api/database.db" beforeDir="false" afterPath="$PROJECT_DIR$/../../api/database.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../api/indepProject/rank/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../api/indepProject/rank/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../api/indepProject/rank/prereq_funcs.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../api/indepProject/rank/rank.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../api/indepProject/rank/rank.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../api/indepProject/routes.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../api/indepProject/routes.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../api/indepProject/static/css/home.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../api/indepProject/static/css/login.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../api/indepProject/static/css/main.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../api/indepProject/status/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../api/indepProject/status/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../api/indepProject/status/config_funcs.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../api/indepProject/status/status.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../api/indepProject/status/status.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../api/indepProject/templates/home.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../api/indepProject/templates/login.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../api/indepProject/templates/register.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../api/indepProject/tools/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../api/indepProject/tools/__init__.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../api/indepProject/tools/config_funcs.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../api/indepProject/tools/config_funcs.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../api/indepProject/tools/data_extractor.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../api/indepProject/tools/data_extractor.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../api/indepProject/tools/data_retreiver.py" beforeDir="false" afterPath="$PROJECT_DIR$/../../api/indepProject/tools/data_retreiver.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../App.js" beforeDir="false" afterPath="$PROJECT_DIR$/../App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/api.js" beforeDir="false" afterPath="$PROJECT_DIR$/api.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../components/Configuration.js" beforeDir="false" afterPath="$PROJECT_DIR$/../components/Configuration.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../components/Dashboard.js" beforeDir="false" afterPath="$PROJECT_DIR$/../components/Dashboard.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../components/MasterList.js" beforeDir="false" afterPath="$PROJECT_DIR$/../components/MasterList.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../styles/Dashboard.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../styles/Dashboard.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../styles/MasterList.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../styles/MasterList.scss" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="ProjectId" id="24wRmN4fWufeMYnT9xELo8PjzDv" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../api" />
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="3719b39a-f672-4c99-9a47-e51e5a64915d" name="Changes" comment="" />
+      <created>1644539821502</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1644539821502</updated>
+    </task>
+    <servers />
+  </component>
+</project>

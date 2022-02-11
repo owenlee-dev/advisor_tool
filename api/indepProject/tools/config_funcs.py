@@ -1,62 +1,52 @@
-'''
-Config file is used for:
-- Cross referencing student progress with matrix for audit
-- Accreditation reports
-'''
 import pandas as pd
 import math
 import os
+import re
 
+excel_in_dict = {}
+config_file=None;
 
+# Function to initialize the global variables
+def set_config_file():
+  global config_file
+  if not config_file:
+    config_file="indepProject/data/config/configFile.xlsx"
+  xls = pd.ExcelFile(config_file)
 
-def get_course_type(course_code):
-    """
-    Gets the course type
+  # store each sheet in a dict
+  # call the sheets by doing "excel_in_dict[sheet_name_to_call]"
+  for sheet_name in xls.sheet_names:
+      excel_in_dict[sheet_name] = xls.parse(sheet_name)
 
-        Param:
-            course_code : the course code
+# Function will return a list of courses in the matrix given year
+# Author : Elliot Chin
+def get_matrix_courses(matrix_year):
+  global config_file,excel_in_dict;
+  if not config_file:
+    set_config_file();
 
-        Return:
-            the course type of the given course
-    """
+  course_list = []
+  matrix = excel_in_dict[matrix_year]
 
-    # replace the spacing and * if present
-    course_code = course_code.replace("*", "")
-    course_code = course_code.replace(" ", "")
+  for _, row in matrix.iterrows():
+    for _, value in row.items():
+      if type(value) is not float and type(value) is str:
+        value = value.replace(" ", "")
+        course_codes_only = re.findall(r"\b[A-Z]{2,4}[0-9]{2,4}\b", str(value))
+        if course_codes_only:
+          course_list += course_codes_only
 
-    # if a course code is one of these, it means its a transfer course
-    # just return the course_code as the course_type
-    unassigned_course_codes = {"EXTRA", "BASSCI", "CSE-OPEN", "CSE-HSS", "TE"}
+  return course_list
 
-    if course_code in unassigned_course_codes:
-        # because at line 91 and 92 strips the course_code off spaces, BAS SCI -> BASSCI
-        # need to add the space back
-        if course_code == "BASSCI":
-            course_code = course_code[:3] + " " + course_code[3:]
-        return course_code
+def get_course_type(course_id:str):
+  return "course type"
 
-    # check for replacements first
-    temp = _get_replacements(course_code)
-    # if a replacment is found, overwrite the course_code for the replacment code
-    if temp is not None:
-        course_code = temp
+def get_course_tag(course_id:str):
+  return "prefix of course (SWE, MATH etc)"
 
-    course_type = _validate_tag(course_code)
+def is_exception(course_id:str):
+  return "if the course is in on exception list"
 
-    if _is_core(course_code):
-        return "CORE"
-
-    # special case for CSE-HSS courses, since they overlap with CSE-OPEN courses
-    # if its an exception for either CSE-HSS or CSE-ITS, but is is not an exception for CSE-OPEN, return CSE-OPEN instead
-    if course_type == "CSE-HSS" or course_type == "CSE-ITS":
-        if (
-            _is_exception(course_code, "CSE-ITS")
-            or _is_exception(course_code, "CSE-HSS")
-        ) and not _is_exception(course_code, "CSE-OPEN"):
-            return "CSE-OPEN"
-
-    # if its a valid tag and is not in the exceptions list
-    if _is_exception(course_code, course_type):
-        return None
-    else:
-        return course_type
+def handle_replacements(course_id:str):
+  return "replacement course or none if no replacement"
+  

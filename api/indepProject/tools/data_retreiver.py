@@ -1,4 +1,3 @@
-
 import json
 
 if(__name__!='__main__'):
@@ -16,21 +15,23 @@ def get_masterlist_data(rank_method:str):
       student_list.append({
         "student_id":student.student_id,
         "name":student.name,
-        "program":student.program,
-        "campus": student.campus,
         "rank":student.prereq_rank,
-        "status":"N/A"
+        "status":"N/A",
+        "campus": student.campus
       })
     elif rank_method=="Credit Hours":
       student_list.append({
         "student_id":student.student_id,
         "name":student.name,
-        "program":student.program,
-        "campus": student.campus,
         "rank":student.credit_rank,
-        "status":"N/A"
+        "status":"N/A",
+        "campus": student.campus
       })
 
   json_string=json.dumps(student_list,indent=4)
 
   return json_string
+
+def get_state_variables():
+  with open("indepProject/data/state/state.json","r") as json_file:
+    return json.load(json_file);

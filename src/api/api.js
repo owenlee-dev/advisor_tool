@@ -11,6 +11,28 @@ const getMasterList = (rankMethod) => {
   return result;
 };
 
+const getGlobalState = () => {
+  const result = axios.get("/get_app_state").then((res) => {
+    return res.data;
+  });
+  return result;
+};
+
+const setGlobalRank = (formData) => {
+  axios({
+    url: "/set_global_rank",
+    method: "POST",
+    mode: "cors",
+    data: formData,
+  })
+    .then((res) => {
+      console.log(res);
+    })
+    .catch((err) => {
+      console.error(err);
+    });
+};
+
 const uploadDataSet = (formData, setDataLoading) => {
   axios({
     url: "/upload_dataset",
@@ -81,6 +103,8 @@ const testFuncion = () => {
 
 export default {
   getMasterList,
+  getGlobalState,
+  setGlobalRank,
   uploadDataSet,
   uploadConfigFile,
   uploadPrereqFile,

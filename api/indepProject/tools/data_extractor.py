@@ -3,6 +3,7 @@ from os import remove
 from datetime import datetime, timedelta
 from indepProject.models.dataset import Dataset
 from indepProject.rank import populate_rank
+from indepProject.status import populate_status
 
 if(__name__!='__main__'):
   from ..models import Enrollment, Student, Course, db
@@ -48,6 +49,7 @@ def upload_and_extract():
   upload_person_data(person_file,now)
   build_enrollments(course_file,now)
   populate_rank(now)
+  populate_status(now)
   return "success"
 
 # Function to extract data from an input file and save in a list of dictionaries

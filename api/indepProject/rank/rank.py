@@ -4,19 +4,14 @@ rank and populating the database with that information
 '''
 
 from indepProject.models import Enrollment,Course,Dataset,Student
-from .prereq_funcs import get_rank_credit_hours,get_rank_prereqs
+from indepProject.tools.prereq_funcs import get_rank_credit_hours,get_rank_prereqs
 from ..models.shared import db
 
-input_file=None;
 
-def set_input_file():
-  global input_file
-  if not input_file:
-    input_file="indepProject/data/prereqs/prereqFile.xlsx"
 
 # Function to calculate student rank based on credit hours
 def get_rank_by_credit(sid:str):
-  set_input_file()
+
   # Get total credit hours completed by student
   total_ch=0
   enrollments=Enrollment.query.filter_by(student_id=sid)
@@ -26,7 +21,7 @@ def get_rank_by_credit(sid:str):
       total_ch+=float(en_course.credit_hours)
   
   # Cross reference total credit hours with pre requisites
-  rank_ch=get_rank_credit_hours(input_file)
+  rank_ch=get_rank_credit_hours()
   rank="FIR"
   if total_ch >= rank_ch['JUN']:
     rank="JUN"
@@ -38,15 +33,16 @@ def get_rank_by_credit(sid:str):
 
 # Function to calculate student rank based on prerequisite
 def get_rank_by_prereq(sid:str):
-  set_input_file()
   # Get dictionary of rank prerequisites
-  rank_prereqs=get_rank_prereqs(input_file)
+  rank_prereqs=get_rank_prereqs()
 
   # Get list of student enrollments
   enrollments=Enrollment.query.filter_by(student_id=sid)
   course_codes=[]
   for enrollment in enrollments:
     course_codes.append(enrollment.course_id)
+
+  #TODO --> NEED TO ACCOUNT FOR FAILED COURSES
 
   # Cross reference the student enrollments with the rank prerequisites to determine rank
   set_rank="FIR"
@@ -61,6 +57,7 @@ def get_rank_by_prereq(sid:str):
 
 # Function to populate the rank column in database
 def populate_rank(dataset_date_time):
+
   students=Student.query.filter_by(dataset=dataset_date_time)
   # iterate through each student - calc rank
   for student in students:
