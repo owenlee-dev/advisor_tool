@@ -126,7 +126,8 @@ def check_for_config():
 @app.route("/test_function",methods=['GET'])
 def test_function():
   to_return=get_matrix_courses('2018-19')
-  print(to_return)
+  for course in to_return:
+    print(course)
   return "this is a test function"
 
 
