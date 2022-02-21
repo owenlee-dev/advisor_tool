@@ -16,7 +16,7 @@ def get_masterlist_data(rank_method:str):
         "student_id":student.student_id,
         "name":student.name,
         "rank":student.prereq_rank,
-        "status":"N/A",
+        "status":student.status,
         "campus": student.campus
       })
     elif rank_method=="Credit Hours":
@@ -24,7 +24,7 @@ def get_masterlist_data(rank_method:str):
         "student_id":student.student_id,
         "name":student.name,
         "rank":student.credit_rank,
-        "status":"N/A",
+        "status":student.status,
         "campus": student.campus
       })
 

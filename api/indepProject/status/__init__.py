@@ -1,1 +1,1 @@
-from .status import populate_status
+from .status import populate_status,get_status

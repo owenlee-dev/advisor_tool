@@ -39,6 +39,7 @@ def roundTime(dt=None, roundTo=1):
 #END HELPER METHODS_________________________________________________________________________
 
 # Function to upload all 3 data files, extract data and store in db
+#TODO set this to return updates with every step being completed, extracting, rank, status etc
 def upload_and_extract():
   person_file="indepProject/data/dataset/personData.txt"
   course_file="indepProject/data/dataset/courseData.txt"

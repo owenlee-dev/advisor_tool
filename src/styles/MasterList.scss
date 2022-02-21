@@ -1,6 +1,26 @@
-.masterlist{
 
-  .header{
-    background-color: white;
+.table-wrapper{
+  height:80vh;
+  overflow-x:hidden;
+  overflow-y:auto;
+  border:1px solid lightgray;
+  border-radius: 5px;
+  
+  thead th{
+    position:sticky;
+    top:0;
+    background: white;
+  }
+  tbody{
+    padding:5px;
+  }
+  span{ 
+    position: absolute; 
+    right: 8px;
+    padding-left: 4px; 
+    top: 5px; 
   }
 }
+
+
+

@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useContext } from "react";
-import MasterList from "./MasterList";
+import MasterList from "./Tables/MasterList";
 import {
   Container,
   Row,
@@ -14,8 +14,7 @@ import api from "../api/api";
 import "../styles/Dashboard.scss";
 
 const Dashboard = () => {
-  const { masterData, changeMasterData, rankMethod, setRankMethod } =
-    useContext(DataContext);
+  const { masterData, rankMethod, setRankMethod } = useContext(DataContext);
 
   //set drop down state from backend
   useEffect(() => {
@@ -32,47 +31,49 @@ const Dashboard = () => {
     api.setGlobalRank(formData);
     setRankMethod(newRank);
   };
-  //set it so that the rank method is stoerd and fetched from the backend so that it can be rerendered and also persists after refresh
+  // Row = 12 cols or 100%
   return (
     <Container fluid className="dashboard-container">
-      <div className="border">
-        <Row>
-          <Col className="setting-container">
-            <div className="btn-container">
-              <DropdownButton className="dataset" title="BSSWE">
-                <Dropdown.Item onClick={() => setRankMethod("Course")}>
-                  BSSWE
-                </Dropdown.Item>
-                <Dropdown.Item onClick={() => setRankMethod("Credit Hours")}>
-                  BSECE
-                </Dropdown.Item>
-              </DropdownButton>
-            </div>
-            <div className="btn-container">
-              <DropdownButton className="dataset" title={rankMethod}>
-                <Dropdown.Item onClick={() => changeRankMethod("Course")}>
-                  Courses
-                </Dropdown.Item>
-                <Dropdown.Item onClick={() => changeRankMethod("Credit Hours")}>
-                  Credit Hours
-                </Dropdown.Item>
-              </DropdownButton>
-            </div>
-            <div className="btn-container">
-              <Button onClick={() => api.testFuncion()}>TEST</Button>
-            </div>
-          </Col>
-        </Row>
-        <Row>
-          <Col className="count-container">
-            <Row className="count-row">COUNTS</Row>
-            <Row className="count-row">AUDIT</Row>
-          </Col>
-          <Col className="list-container">
-            <MasterList />
-          </Col>
-        </Row>
-      </div>
+      <Row>
+        <Col className="col-2"></Col>
+        <Col className="setting-container">
+          <div className="btn-container">
+            <DropdownButton className="dataset" title="BSSWE">
+              <Dropdown.Item onClick={() => setRankMethod("Course")}>
+                BSSWE
+              </Dropdown.Item>
+              <Dropdown.Item onClick={() => setRankMethod("Credit Hours")}>
+                BSECE
+              </Dropdown.Item>
+            </DropdownButton>
+          </div>
+          <div className="btn-container">
+            <DropdownButton className="dataset" title={rankMethod}>
+              <Dropdown.Item onClick={() => changeRankMethod("Course")}>
+                Courses
+              </Dropdown.Item>
+              <Dropdown.Item onClick={() => changeRankMethod("Credit Hours")}>
+                Credit Hours
+              </Dropdown.Item>
+            </DropdownButton>
+          </div>
+          <div className="btn-container">
+            <Button onClick={() => api.testFuncion()}>TEST</Button>
+          </div>
+        </Col>
+        <Col className="col-2"></Col>
+      </Row>
+      <Row>
+        <Col className="col-2"></Col>
+        <Col className="col-3 count-container">
+          <Row className="count-row">COUNTS</Row>
+          <Row className="audit-row">AUDIT</Row>
+        </Col>
+        <Col className="col-5 list-container">
+          <MasterList />
+        </Col>
+        <Col className="col-2"></Col>
+      </Row>
     </Container>
   );
 };

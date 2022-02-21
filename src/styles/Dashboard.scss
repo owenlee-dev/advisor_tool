@@ -1,52 +1,42 @@
 @import '_global.scss';
 
 .dashboard-container{
-  display:flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top:1%;
   
   .setting-container{
     display:flex;
-  
+    width:auto;
+    padding:1%;
+    margin-top:1%;
     background-color: cornflowerblue;
-    margin-bottom:1%;
-  }
-
-  .list-container{
-    height:80vh;
-    width:60vw;
-  }
-
-  .dataset{
-    padding:0px 10px;
+    
+    .dataset{
+      padding:0px 10px;
+    }
   }
 
   .btn-container{
     display:flex;
-    margin:10px 0px;
+    // margin:10px 0px;
     flex-direction: row;
   }
   
-  .count-container{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+  .count-container{  
     background-color: lightcoral;
-    width:300px;
     margin-right: 1%;
   }
 
   .count-row{
-    border:1px solid black;
-    margin:10px;
-    width:100%;
-    height:100%;
+    border:1px solid lightgray;
+    justify-content: center;
+    align-items: center;
+    height:35%;
+  }
+  .audit-row{
+    border:1px solid lightgray;
+    justify-content: center;
+    align-items: center;
+    height:65%;
   }
 
-  .border{
-    border:2px solid black;
-  }
   
 }

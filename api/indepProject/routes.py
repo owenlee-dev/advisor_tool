@@ -2,9 +2,11 @@ import os
 import json
 from indepProject import app
 from flask import render_template, session, request, flash, redirect, url_for
-from .tools import upload_and_extract,get_state_variables, text_to_dictionary_list,get_masterlist_data,get_matrix_courses
+from .tools import upload_and_extract,get_state_variables, text_to_dictionary_list,get_masterlist_data,get_matrix_courses,get_matrix_year
 from .models.shared import db
 from .models import User, Student
+
+from indepProject.status import get_status
 
 @app.route('/')
 def home():
@@ -125,9 +127,9 @@ def check_for_config():
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 @app.route("/test_function",methods=['GET'])
 def test_function():
-  to_return=get_matrix_courses('2018-19')
-  for course in to_return:
-    print(course)
+  get_matrix_year("2020-09-01")
+  get_status("5542205")
+  
   return "this is a test function"
 
 

@@ -14,6 +14,7 @@ import DataContext from "./DataContext";
 /**
 TODO Give live updates about load and extraction of data
 TODO Workshop messages to the user to add clarity 
+TODO add ability to set the data set that you would like to see
 */
 
 const Configuration = () => {

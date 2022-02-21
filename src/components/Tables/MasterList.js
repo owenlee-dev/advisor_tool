@@ -1,14 +1,23 @@
 import React, { useMemo, useState, useEffect, useContext } from "react";
 import { Table, Button } from "react-bootstrap";
 import TableScrollbar from "react-table-scrollbar";
-import { useTable } from "react-table";
-import "../styles/MasterList.scss";
-import DataContext from "./DataContext";
-import api from "../api/api";
+import {
+  useTable,
+  useSortBy,
+  useGlobalFilter,
+  useRowSelect,
+  useFilters,
+  useAbsoluteLayout,
+} from "react-table";
+import "../../styles/MasterList.scss";
+import DataContext from "../DataContext";
+import api from "../../api/api";
+import { fuzzyTextFilterFn, DefaultColumnFilter } from "./TableFilters";
+import { columns } from "./Columns";
 
 const MasterList = () => {
   const [data, setData] = useState([]);
-  const { masterData, setMasterData, rankMethod } = useContext(DataContext);
+  const { masterData, rankMethod } = useContext(DataContext);
 
   //set table values to the state master data
   useEffect(() => {
@@ -23,38 +32,51 @@ const MasterList = () => {
     }
   }, [rankMethod]);
 
-  const columns = useMemo(
-    () => [
-      {
-        Header: "Student ID",
-        accessor: "student_id",
+  const filterTypes = React.useMemo(
+    () => ({
+      // Add a new fuzzyTextFilterFn filter type.
+      fuzzyText: fuzzyTextFilterFn,
+      // Or, override the default text filter to use
+      // "startWith"
+      text: (rows, id, filterValue) => {
+        return rows.filter((row) => {
+          const rowValue = row.values[id];
+          return rowValue !== undefined
+            ? String(rowValue)
+                .toLowerCase()
+                .startsWith(String(filterValue).toLowerCase())
+            : true;
+        });
       },
-      {
-        Header: "Name",
-        accessor: "name",
-      },
-      {
-        Header: "Rank",
-        accessor: "rank",
-      },
-      {
-        Header: "Status",
-        accessor: "status",
-      },
-      {
-        Header: "Campus",
-        accessor: "campus",
-      },
-    ],
+    }),
+    []
+  );
+
+  const defaultColumn = React.useMemo(
+    () => ({
+      // Let's set up our default Filter UI
+      Filter: DefaultColumnFilter,
+    }),
     []
   );
 
   const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
-    useTable({ columns, data });
+    useTable(
+      {
+        columns,
+        data,
+        defaultColumn, // Be sure to pass the defaultColumn option
+        filterTypes,
+      },
+      useFilters,
+      useGlobalFilter,
+      useSortBy,
+      useRowSelect
+    );
 
   return (
     <>
-      <TableScrollbar>
+      <div className="table-wrapper">
         <Table
           striped
           bordered
@@ -62,12 +84,15 @@ const MasterList = () => {
           className="masterlist"
           {...getTableProps()}
         >
-          <thead className="header">
+          <thead>
             {headerGroups.map((headerGroup) => (
               <tr {...headerGroup.getHeaderGroupProps()}>
                 {headerGroup.headers.map((column) => (
-                  <th {...column.getHeaderProps()}>
+                  <th {...column.getHeaderProps(column.getSortByToggleProps())}>
                     {column.render("Header")}
+                    <span>
+                      {column.isSorted ? (column.isSortedDesc ? "⟰" : "⟱") : ""}
+                    </span>
                   </th>
                 ))}
               </tr>
@@ -88,7 +113,7 @@ const MasterList = () => {
             })}
           </tbody>
         </Table>
-      </TableScrollbar>
+      </div>
     </>
   );
 };
