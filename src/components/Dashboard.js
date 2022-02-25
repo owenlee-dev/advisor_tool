@@ -12,6 +12,7 @@ import {
 import DataContext from "./DataContext";
 import api from "../api/api";
 import "../styles/Dashboard.scss";
+import Counts from "./Counts";
 
 const Dashboard = () => {
   const { masterData, rankMethod, setRankMethod } = useContext(DataContext);
@@ -66,7 +67,9 @@ const Dashboard = () => {
       <Row>
         <Col className="col-2"></Col>
         <Col className="col-3 count-container">
-          <Row className="count-row">COUNTS</Row>
+          <Row className="count-row">
+            <Counts />
+          </Row>
           <Row className="audit-row">AUDIT</Row>
         </Col>
         <Col className="col-5 list-container">

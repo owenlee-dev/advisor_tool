@@ -78,7 +78,7 @@ def get_status(student_id):
   # if they have not registered for all of the core courses, no need to check the electives can just leave IN PROGRESS
   if core_course_count != len(matrix_courses):
     print(status)
-    # return status
+    return status
 
   # if they have completed all of the core courses, check for electives
 
@@ -103,11 +103,11 @@ def get_status(student_id):
       matrix_courses.append(course)
 
   #------------
-  for enrollment in student_enrollments:
-    if(enrollment.course_id.replace("*","") in matrix_courses):
-      matrix_courses.remove(enrollment.course_id.replace("*",""))
-  print()
-  pretty_print_list(matrix_courses)
+  # for enrollment in student_enrollments:
+  #   if(enrollment.course_id.replace("*","") in matrix_courses):
+  #     matrix_courses.remove(enrollment.course_id.replace("*",""))
+  # print()
+  # pretty_print_list(matrix_courses)
   # if there is a type of elective that doesnt have all courses registered then student is IN PROGRESS
   for value in matrix_non_core_courses.values():
     if value >0:
@@ -130,7 +130,7 @@ def get_status(student_id):
     #if no courses without passing grades then they are CLEAR TO GRADUATE
     if len(student_enrollments) == 0:
       status="CLEAR TO GRADUATE"
-  return "status"
+  return status
 
 # Function will translate course_list courses to the newest courses as per the replacements
 def handle_replacements(course_list):

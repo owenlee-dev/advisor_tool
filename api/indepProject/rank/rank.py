@@ -4,8 +4,8 @@ rank and populating the database with that information
 '''
 
 from indepProject.models import Enrollment,Course,Dataset,Student
-from indepProject.tools.prereq_funcs import get_rank_credit_hours,get_rank_prereqs
 from ..models.shared import db
+from indepProject.tools.prereq_funcs import get_rank_credit_hours,get_rank_prereqs
 
 
 
@@ -15,6 +15,9 @@ def get_rank_by_credit(sid:str):
   # Get total credit hours completed by student
   total_ch=0
   enrollments=Enrollment.query.filter_by(student_id=sid)
+  # if len(enrollments)==0:
+  #   return "FIR"
+  
   for enrollment in enrollments:
     en_course=Course.query.filter_by(course_id=enrollment.course_id).first()
     if en_course.course_id:

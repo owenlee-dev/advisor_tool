@@ -1,5 +1,6 @@
 import os
 import json
+from .counts import cohort_get_total_students
 from indepProject import app
 from flask import render_template, session, request, flash, redirect, url_for
 from .tools import upload_and_extract,get_state_variables, text_to_dictionary_list,get_masterlist_data,get_matrix_courses,get_matrix_year
@@ -127,9 +128,9 @@ def check_for_config():
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 @app.route("/test_function",methods=['GET'])
 def test_function():
-  get_matrix_year("2020-09-01")
-  get_status("5542205")
-  
+  # total=cohort_get_total_students("2022-02-25 06:40:14.000000")
+  total=12
+  print(total)
   return "this is a test function"
 
 

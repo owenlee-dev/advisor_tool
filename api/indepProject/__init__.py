@@ -4,6 +4,8 @@ from .models.shared import db
 import os
 
 app = Flask(__name__)
+
+# db config
 app.secret_key = os.urandom(12)
 app.config['SQLALCHEMY_DATABASE_URI']='sqlite:///'+os.getcwd()+'/database.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS']=False
