@@ -58,9 +58,6 @@ def get_status(student_id):
     student_courses.append(enrollment.course_id.replace("*",""))
     if enrollment.course_id=="CS*1073" and enrollment.grade not in failing_grades:
       status="IN PROGRESS"
-  
-  for enrollment in student_enrollments:
-    print(enrollment.course_id+" "+ enrollment.grade)
 
   matrix_year = get_matrix_year(student.start_date)
   matrix_courses=get_matrix_courses(matrix_year)
@@ -106,7 +103,6 @@ def get_status(student_id):
   # for enrollment in student_enrollments:
   #   if(enrollment.course_id.replace("*","") in matrix_courses):
   #     matrix_courses.remove(enrollment.course_id.replace("*",""))
-  # print()
   # pretty_print_list(matrix_courses)
   # if there is a type of elective that doesnt have all courses registered then student is IN PROGRESS
   for value in matrix_non_core_courses.values():

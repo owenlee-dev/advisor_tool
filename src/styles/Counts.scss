@@ -1,7 +1,19 @@
-.container{
+.count-container{
+  height:100%;
   border: 1px solid black;
+  display:flex;
+  justify-content: center;
+  
+  .count-range-dropdown{
+    padding:0px;
+  }
+  
+  .counts{
+    display:flex;
+    flex-direction: column;
+    border-radius: 5px;
+    padding:10px;
+    background-color: whitesmoke;
+  }
 }
-
-.button{
-  background-color: blue;
-}
+  

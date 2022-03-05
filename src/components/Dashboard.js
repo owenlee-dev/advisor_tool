@@ -14,6 +14,13 @@ import api from "../api/api";
 import "../styles/Dashboard.scss";
 import Counts from "./Counts";
 
+/**
+ * Question for Dawn
+ * Where should the data set be selectable
+ * What should be the identified for these selectable datasets?
+ * Should it be the upload date? start date range? etc
+ */
+
 const Dashboard = () => {
   const { masterData, rankMethod, setRankMethod } = useContext(DataContext);
 
@@ -66,7 +73,7 @@ const Dashboard = () => {
       </Row>
       <Row>
         <Col className="col-2"></Col>
-        <Col className="col-3 count-container">
+        <Col className="col-3 count-audit-col">
           <Row className="count-row">
             <Counts />
           </Row>

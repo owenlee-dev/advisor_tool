@@ -94,6 +94,15 @@ const checkForPrereq = () => {
   return result;
 };
 
+const getCohortRankCounts=()=>{
+  const result = axios
+    .get("/get_cohort_rank_counts")
+    .then((res) => {
+      return res.data;
+    });
+  return result;
+}
+
 const testFuncion = () => {
   const result = axios.get("/test_function").then((res) => {
     return res.data;
@@ -110,5 +119,6 @@ export default {
   uploadPrereqFile,
   checkForPrereq,
   checkForConfig,
+  getCohortRankCounts,
   testFuncion,
 };
