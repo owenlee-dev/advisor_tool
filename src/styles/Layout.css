@@ -1,1 +1,27 @@
-/* No CSS *//*# sourceMappingURL=Header.css.map */
+body {
+  margin-top: 60px;
+}
+
+@media (max-width: 979px) {
+  body {
+    padding-top: 0px;
+  }
+}
+
+html {
+  height: 100%;
+  width: 100%;
+}
+
+.tab {
+  margin: 1% 10px;
+}
+
+.tab .tab-text {
+  color: #FBE2DF;
+}
+
+.header-container {
+  position: absolute;
+}
+/*# sourceMappingURL=Layout.css.map */

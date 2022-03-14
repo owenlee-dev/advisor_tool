@@ -1,38 +1,39 @@
 @import '_global.scss';
+@import '_colors.scss';
 
 .dashboard-container{
   
   .setting-container{
     display:flex;
-    width:auto;
     padding:1%;
     margin-top:1%;
-    background-color: cornflowerblue;
-    
-    .dataset{
-      padding:0px 10px;
-    }
+    background-color:$medium_2 ;    
+  }
+  
+  a:active{
+    background-color: $gray; 
   }
 
   .btn-container{
     display:flex;
-    // margin:10px 0px;
     flex-direction: row;
   }
   
   .count-audit-col{  
-    background-color: lightcoral;
+    display:flex;
+    flex-direction: column;
+    background-color: $light;
     margin-right: 1%;
   }
 
   .count-row{
-    border:1px solid lightgray;
-    justify-content: center;
-    align-items: center;
-    height:35%;
+    display:flex;
+    border:1px solid $gray;
+    height:45%;
   }
+
   .audit-row{
-    border:1px solid lightgray;
+    border:1px solid $gray;
     justify-content: center;
     align-items: center;
     height:65%;

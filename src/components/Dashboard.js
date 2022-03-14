@@ -43,10 +43,14 @@ const Dashboard = () => {
   return (
     <Container fluid className="dashboard-container">
       <Row>
-        <Col className="col-2"></Col>
+        <Col className="col-1"></Col>
         <Col className="setting-container">
           <div className="btn-container">
-            <DropdownButton className="dataset" title="BSSWE">
+            <DropdownButton
+              variant="outline-light"
+              className="dataset"
+              title="BSSWE"
+            >
               <Dropdown.Item onClick={() => setRankMethod("Course")}>
                 BSSWE
               </Dropdown.Item>
@@ -56,7 +60,11 @@ const Dashboard = () => {
             </DropdownButton>
           </div>
           <div className="btn-container">
-            <DropdownButton className="dataset" title={rankMethod}>
+            <DropdownButton
+              variant="outline-light"
+              className="dataset"
+              title={rankMethod}
+            >
               <Dropdown.Item onClick={() => changeRankMethod("Course")}>
                 Courses
               </Dropdown.Item>
@@ -66,23 +74,25 @@ const Dashboard = () => {
             </DropdownButton>
           </div>
           <div className="btn-container">
-            <Button onClick={() => api.testFuncion()}>TEST</Button>
+            <Button variant="outline-light" onClick={() => api.testFuncion()}>
+              TEST
+            </Button>
           </div>
         </Col>
-        <Col className="col-2"></Col>
+        <Col className="col-1"></Col>
       </Row>
       <Row>
-        <Col className="col-2"></Col>
+        <Col className="col-1"></Col>
         <Col className="col-3 count-audit-col">
           <Row className="count-row">
             <Counts />
           </Row>
           <Row className="audit-row">AUDIT</Row>
         </Col>
-        <Col className="col-5 list-container">
+        <Col className="col-7 list-container">
           <MasterList />
         </Col>
-        <Col className="col-2"></Col>
+        <Col className="col-1"></Col>
       </Row>
     </Container>
   );

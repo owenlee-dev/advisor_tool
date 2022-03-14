@@ -94,14 +94,50 @@ const checkForPrereq = () => {
   return result;
 };
 
-const getCohortRankCounts=()=>{
+const getCountRanges = () => {
+  const result = axios.get("/get_count_ranges").then((res) => {
+    return res.data;
+  });
+  return result;
+};
+
+const getCohortRankCounts = (range) => {
+  if (!range) {
+    range = "2020-21";
+  }
   const result = axios
-    .get("/get_cohort_rank_counts")
+    .get("/get_cohort_rank_counts", { params: { rangeParameter: range } })
     .then((res) => {
       return res.data;
     });
   return result;
-}
+};
+
+const getSemesterRankCounts = (range) => {
+  if (!range) {
+    return null;
+  }
+  const result = axios
+    .get("/get_semester_rank_counts", { params: { rangeParameter: range } })
+    .then((res) => {
+      return res.data;
+    });
+  return result;
+};
+
+const getCoopCounts = (type, range) => {
+  if (!range) {
+    return null;
+  }
+  const result = axios
+    .get("/get_coop_counts", {
+      params: { type, range },
+    })
+    .then((res) => {
+      return res.data;
+    });
+  return result;
+};
 
 const testFuncion = () => {
   const result = axios.get("/test_function").then((res) => {
@@ -119,6 +155,9 @@ export default {
   uploadPrereqFile,
   checkForPrereq,
   checkForConfig,
+  getCountRanges,
   getCohortRankCounts,
+  getSemesterRankCounts,
+  getCoopCounts,
   testFuncion,
 };

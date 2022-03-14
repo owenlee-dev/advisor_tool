@@ -1,13 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import "../styles/Configuration.scss";
-import {
-  Button,
-  DropdownButton,
-  Dropdown,
-  Card,
-  Form,
-  Spinner,
-} from "react-bootstrap";
+import { Button, Card, Form, Spinner } from "react-bootstrap";
 import api from "../api/api";
 import DataContext from "./DataContext";
 
@@ -140,12 +133,17 @@ const Configuration = () => {
             />
             <div className="btn-spinner">
               {prereqLoaded && configLoaded && (
-                <Button className="btn upload" type="submit">
+                <Button variant="dark" className="btn upload" type="submit">
                   Upload
                 </Button>
               )}
               {(!prereqLoaded || !configLoaded) && (
-                <Button className="btn upload" type="submit" disabled>
+                <Button
+                  variant="dark"
+                  className="btn upload"
+                  type="submit"
+                  disabled
+                >
                   Upload
                 </Button>
               )}
@@ -164,7 +162,7 @@ const Configuration = () => {
           Upload a new XML configuration file
           <Form onSubmit={handleConfigSubmit} className="card-form">
             <Form.Control type="file" onChange={configChangeHandler} />
-            <Button className="btn upload" type="submit">
+            <Button variant="dark" className="btn upload" type="submit">
               Upload
             </Button>
           </Form>
@@ -180,7 +178,7 @@ const Configuration = () => {
           Select rank calculation method and upload the configuration file
           <Form onSubmit={handlePrereqSubmit} className="card-form">
             <Form.Control type="file" onChange={prereqChangeHandler} />
-            <Button className="btn upload" type="submit">
+            <Button variant="dark" className="btn upload" type="submit">
               Upload
             </Button>
           </Form>

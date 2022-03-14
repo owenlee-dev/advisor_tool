@@ -1,8 +1,10 @@
+@import "_global.scss";
+@import "_colors.scss";
 .tab{
   margin:1% 10px;
 
   .tab-text{
-    color:white;
+    color:$light;
   }
 }
 .header-container{

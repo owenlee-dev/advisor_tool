@@ -1,0 +1,26 @@
+.table-wrapper {
+  height: 80vh;
+  overflow-x: hidden;
+  overflow-y: auto;
+  border: 1px solid lightgray;
+  border-radius: 5px;
+}
+
+.table-wrapper thead th {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  background: white;
+}
+
+.table-wrapper tbody {
+  padding: 5px;
+}
+
+.table-wrapper span {
+  position: absolute;
+  right: 8px;
+  padding-left: 4px;
+  top: 5px;
+}
+/*# sourceMappingURL=MasterList.css.map */

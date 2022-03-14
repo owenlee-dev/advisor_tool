@@ -1,0 +1,62 @@
+body {
+  margin-top: 60px;
+}
+
+@media (max-width: 979px) {
+  body {
+    padding-top: 0px;
+  }
+}
+
+html {
+  height: 100%;
+  width: 100%;
+}
+
+.dashboard-container .setting-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: auto;
+  padding: 1%;
+  margin-top: 1%;
+  background-color: #961D13;
+}
+
+.dashboard-container .btn-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+
+.dashboard-container .count-audit-col {
+  background-color: #FBE2DF;
+  margin-right: 1%;
+}
+
+.dashboard-container .count-row {
+  border: 1px solid #808080;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 35%;
+}
+
+.dashboard-container .audit-row {
+  border: 1px solid #808080;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 65%;
+}
+/*# sourceMappingURL=Dashboard.css.map */

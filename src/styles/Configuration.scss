@@ -1,3 +1,4 @@
+@import '_colors.scss';
 @import '_global.scss';
 
 .upload-container{
@@ -18,12 +19,6 @@
     margin:10px 0px;
     flex-direction: row;
   }
-
-  .btn{
-    background-color: slategray;
-    border-color:rgb(80, 80, 80);
-  }
-
   .card-body{
     padding:10px 0px;
 
