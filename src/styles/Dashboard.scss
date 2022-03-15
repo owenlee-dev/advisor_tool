@@ -2,8 +2,22 @@
 @import '_colors.scss';
 
 .dashboard-container{
+
+  .sub-header{
+    display:flex;
+    justify-content: center;
+  }
+  .console-content{
+    display:flex;
+    justify-content: center;
+
+  }
+  .list-container{
+    padding-right: 0px;
+  }
   .setting-container{
     display:flex;
+    justify-self: center;
     padding:1%;
     margin-top:1%;
     border-top-left-radius: 5px;
@@ -31,8 +45,8 @@
   .count-audit-col{  
     display:flex;
     flex-direction: column;
+
     background-color: $light;
-    margin-right: 1%;
   }
 
   .count-row{

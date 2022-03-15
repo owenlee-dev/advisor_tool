@@ -42,7 +42,7 @@ const Dashboard = () => {
   // Row = 12 cols or 100%
   return (
     <Container fluid className="dashboard-container">
-      <Row>
+      <Row className="sub-header">
         <Col className="col-1"></Col>
         <Col className="setting-container">
           <div className="btn-container">
@@ -91,8 +91,7 @@ const Dashboard = () => {
         </Col>
         <Col className="col-1"></Col>
       </Row>
-      <Row>
-        <Col className="col-1"></Col>
+      <Row className="console-content">
         <Col className="col-3 count-audit-col">
           <Row className="count-row">
             <Counts />
@@ -102,7 +101,6 @@ const Dashboard = () => {
         <Col className="col-7 list-container">
           <MasterList />
         </Col>
-        <Col className="col-1"></Col>
       </Row>
     </Container>
   );
