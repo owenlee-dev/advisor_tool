@@ -3,10 +3,21 @@
 .tab{
   margin:1% 10px;
 
-  .tab-text{
-    color:$light;
+  .tab-text {
+    color:$light !important;
   }
 }
+
+.title{
+  font-size:1.5rem;
+  font-weight: 500 !important;
+  color:$light !important;
+}
+
 .header-container{
-  position:absolute
+  position:absolute;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  box-shadow: 5px 5px 8px #888888;;
+
 }

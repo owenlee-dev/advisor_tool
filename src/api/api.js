@@ -72,9 +72,7 @@ const uploadPrereqFile = (formData) => {
     mode: "cors",
     data: formData,
   })
-    .then((res) => {
-      console.log(res);
-    })
+    .then((res) => {})
     .catch((err) => {
       console.error(err);
     });

@@ -1,9 +1,9 @@
 @import '_colors.scss';
-
-
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600&display=swap');
 body {
   margin-top: 60px;
-  
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
 }
 @media (max-width: 979px) {
   body {

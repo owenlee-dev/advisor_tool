@@ -14,7 +14,9 @@ const Layout = () => {
         fixed="top"
       >
         <Container>
-          <Navbar.Brand href="/dashboard">Student Tracking System</Navbar.Brand>
+          <Navbar.Brand className="title" href="/dashboard">
+            Student Tracking System
+          </Navbar.Brand>
           <Nav className="nav-buttons">
             <Nav.Item className="tab">
               <Link to="/dashboard" className="nav-link">

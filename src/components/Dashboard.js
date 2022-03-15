@@ -49,6 +49,18 @@ const Dashboard = () => {
             <DropdownButton
               variant="outline-light"
               className="dataset"
+              title="Dataset"
+            >
+              <Dropdown.Item onClick={() => setRankMethod("Course")}>
+                Dataset 1
+              </Dropdown.Item>
+              <Dropdown.Item onClick={() => setRankMethod("Credit Hours")}>
+                Dataset 2
+              </Dropdown.Item>
+            </DropdownButton>
+            <DropdownButton
+              variant="outline-light"
+              className="dataset"
               title="BSSWE"
             >
               <Dropdown.Item onClick={() => setRankMethod("Course")}>
@@ -58,8 +70,6 @@ const Dashboard = () => {
                 BSECE
               </Dropdown.Item>
             </DropdownButton>
-          </div>
-          <div className="btn-container">
             <DropdownButton
               variant="outline-light"
               className="dataset"

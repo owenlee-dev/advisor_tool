@@ -40,7 +40,7 @@ const Counts = () => {
       setSEN(rankCounts.SEN);
     };
     getCounts();
-  }, [currentRange]);
+  }, [currentRange, rankMethod]);
   // This will rerender counts when the page loads
   // or if the rank calc method, count range parameter or the range changes
   useEffect(() => {
@@ -70,12 +70,12 @@ const Counts = () => {
   return (
     <Container fluid className="count-container">
       <Row className="buttons">
-        <Col>
+        <Col className="top-row">
           <h2 className="help-text">Count students by: </h2>
           <DropdownButton
             variant="dark"
             size="sm"
-            className="count-range-dropdown"
+            className="range-dropdown"
             title={countRangeParameter}
           >
             <Dropdown.Item onClick={() => setCountRangeParameter("Cohort")}>
@@ -86,7 +86,7 @@ const Counts = () => {
             </Dropdown.Item>
           </DropdownButton>
         </Col>
-        <Col>
+        <Col className="top-row">
           <h2 className="help-text">Students in {countRangeParameter}: </h2>
           <DropdownButton
             variant="dark"
@@ -120,12 +120,18 @@ const Counts = () => {
       <Row className="graph">
         <CountsChart FIR={FIR} SOP={SOP} JUN={JUN} SEN={SEN} />
       </Row>
-      <Row className="totals">
-        <h2 className="bot-help-text">
-          Total Students: {FIR + SOP + JUN + SEN}
-        </h2>
-        <h2 className="bot-help-text">Students in Co-Op: {COOP}</h2>
-      </Row>
+      <table className="totals">
+        <thead>
+          <tr className="bot-help-text">
+            <td> Total Students: </td>
+            <td> {FIR + SOP + JUN + SEN}</td>
+          </tr>
+          <tr className="bot-help-text">
+            <td> Students in Co-Op: </td>
+            <td> {COOP}</td>
+          </tr>
+        </thead>
+      </table>
     </Container>
   );
 };

@@ -4,31 +4,52 @@
 .count-container{
   display:flex;
   flex-direction: column;
-  align-items: center1; 
-
-  .buttons{
-    margin-top:1rem;
-
-  }
-  .graph{
+  justify-content: center;
+  
+  .graph{ 
     margin:2% 0%;
-    width:90%;    
+    width:90%;  
+      
   }
   .help-text{
-    font-size:1rem;
+    font-size:0.95rem;
+    text-overflow: ellipsis;
+    text-align: center;
+
+  }
+  .top-row{
+    display:flex;
+    flex-direction: column;
+    justify-content:center;
   }
   .bot-help-text{
-    font-size:1.2rem;
+    font-size:1em;
+    text-align: center;
     margin-bottom:10
   }
+  
   .range-dropdown{
+    display: flex;
+    justify-content: center;
     .dropdown-menu{
       max-height: 200px;
       overflow-y: scroll;
     }
 
   } 
-  
+  .totals{
+    border-collapse:separate;
+    color:rgb(100, 100, 100);
+    font-weight:500;
+    border:solid $gray 1px;
+    border-radius:3px;
+    width:90%;
+    align-self: center;
+    td{
+      border:1px solid $gray;
+    }
+  }
+
   a:active{
     background-color: $gray; 
   }

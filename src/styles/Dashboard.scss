@@ -2,11 +2,12 @@
 @import '_colors.scss';
 
 .dashboard-container{
-  
   .setting-container{
     display:flex;
     padding:1%;
     margin-top:1%;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
     background-color:$medium_2 ;    
   }
   
@@ -14,11 +15,19 @@
     background-color: $gray; 
   }
 
+  .btn{
+    margin-right:10px;
+  }
   .btn-container{
     display:flex;
-    flex-direction: row;
   }
-  
+  .btn-outline-light:hover{
+    color:$dark;
+  }
+  .btn-outline-light{
+    color: $light;
+    border-color: $light;
+  }
   .count-audit-col{  
     display:flex;
     flex-direction: column;
@@ -30,12 +39,16 @@
     display:flex;
     border:1px solid $gray;
     height:45%;
+    padding:10px;
   }
 
-  .audit-row{
+  .audit-row{   
     border:1px solid $gray;
     justify-content: center;
     align-items: center;
     height:65%;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+
   }
 }

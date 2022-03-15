@@ -1,11 +1,12 @@
 import React from "react";
-import {
-  Chart as ChartJS,
-  CategoryScale,
-  LinearScale,
-  BarElement,
-} from "chart.js";
+import { Chart, CategoryScale, LinearScale, BarElement } from "chart.js";
 import { Bar } from "react-chartjs-2";
+import "../../styles/Counts.scss";
+
+Chart.defaults.font.size = 17;
+Chart.defaults.font.weight = 500;
+Chart.defaults.font.family = "Open Sans";
+
 const CountsChart = (props) => {
   const { FIR, SOP, JUN, SEN } = props;
   const rankData = [FIR, SOP, JUN, SEN];
@@ -15,15 +16,14 @@ const CountsChart = (props) => {
     "JUN:\t\t" + JUN,
     "SEN:\t\t" + SEN,
   ];
-  ChartJS.register(CategoryScale, LinearScale, BarElement);
+  Chart.register(CategoryScale, LinearScale, BarElement);
 
   const options = {
     indexAxis: "y",
     scales: {
       x: {
         ticks: {
-          align: "start",
-          color: "black",
+          display: false,
         },
       },
     },
