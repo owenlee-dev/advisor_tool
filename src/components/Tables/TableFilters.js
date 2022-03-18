@@ -1,5 +1,7 @@
 import React from "react";
 import { matchSorter } from "match-sorter";
+import { useAsyncDebounce } from "react-table";
+import "../../styles/MasterList.scss";
 
 // compare course code function
 // in code EMGG*1015
@@ -24,6 +26,33 @@ export function compareCourseCode(rowA, rowB, id, desc) {
   if (a > b) return 1;
   if (a < b) return -1;
   return 0;
+}
+
+// Define a default UI for filtering
+export function GlobalFilter({
+  preGlobalFilteredRows,
+  globalFilter,
+  setGlobalFilter,
+}) {
+  const count = preGlobalFilteredRows.length;
+  const [value, setValue] = React.useState(globalFilter);
+  const onChange = useAsyncDebounce((value) => {
+    setGlobalFilter(value || undefined);
+  }, 200);
+
+  return (
+    <span className="global-filter">
+      Search:{" "}
+      <input
+        value={value || ""}
+        onChange={(e) => {
+          setValue(e.target.value);
+          onChange(e.target.value);
+        }}
+        placeholder={`${count} students...`}
+      />
+    </span>
+  );
 }
 
 // tudent rank function for sorting the rank properly

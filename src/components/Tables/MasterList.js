@@ -12,8 +12,13 @@ import {
 import "../../styles/MasterList.scss";
 import DataContext from "../DataContext";
 import api from "../../api/api";
-import { fuzzyTextFilterFn, DefaultColumnFilter } from "./TableFilters";
+import {
+  fuzzyTextFilterFn,
+  DefaultColumnFilter,
+  GlobalFilter,
+} from "./TableFilters";
 import { columns } from "./Columns";
+import { CheckBox } from "./CheckBox";
 
 const MasterList = () => {
   const [data, setData] = useState([]);
@@ -60,19 +65,46 @@ const MasterList = () => {
     []
   );
 
-  const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
-    useTable(
-      {
-        columns,
-        data,
-        defaultColumn, // Be sure to pass the defaultColumn option
-        filterTypes,
-      },
-      useFilters,
-      useGlobalFilter,
-      useSortBy,
-      useRowSelect
-    );
+  const {
+    getTableProps,
+    getTableBodyProps,
+    headerGroups,
+    rows,
+    prepareRow,
+    state,
+    visibleColumns,
+    preGlobalFilteredRows,
+    setGlobalFilter,
+  } = useTable(
+    {
+      columns,
+      data,
+      defaultColumn, // Be sure to pass the defaultColumn option
+      filterTypes,
+    },
+    useFilters,
+    useGlobalFilter,
+    useSortBy,
+    useRowSelect,
+    (hooks) => {
+      hooks.visibleColumns.push((columns) => {
+        return [
+          {
+            id: "selection",
+            Header: ({ getToggleAllRowsSelectedProps }) => (
+              <div>
+                <CheckBox {...getToggleAllRowsSelectedProps()} />
+              </div> // check boxes on left handside of the student master list
+            ),
+            Cell: ({ row }) => (
+              <CheckBox {...row.getToggleRowSelectedProps()} />
+            ),
+          },
+          ...columns,
+        ];
+      });
+    }
+  );
 
   return (
     <>
@@ -85,12 +117,30 @@ const MasterList = () => {
           {...getTableProps()}
         >
           <thead>
+            <tr>
+              <th colSpan={visibleColumns.length}>
+                <div className="table-settings">
+                  <GlobalFilter
+                    preGlobalFilteredRows={preGlobalFilteredRows}
+                    globalFilter={state.globalFilter}
+                    setGlobalFilter={setGlobalFilter}
+                  />
+                  <div>
+                    <Button variant="secondary">Generate Text Audit</Button>
+                    <Button variant="secondary">Generate Matrix Audit</Button>
+                  </div>
+                </div>
+              </th>
+            </tr>
             {headerGroups.map((headerGroup) => (
               <tr {...headerGroup.getHeaderGroupProps()}>
                 {headerGroup.headers.map((column) => (
-                  <th {...column.getHeaderProps(column.getSortByToggleProps())}>
+                  <th
+                    className="table-header"
+                    {...column.getHeaderProps(column.getSortByToggleProps())}
+                  >
                     {column.render("Header")}
-                    <span>
+                    <span className="sort-text">
                       {column.isSorted ? (column.isSortedDesc ? "⟰" : "⟱") : ""}
                     </span>
                   </th>

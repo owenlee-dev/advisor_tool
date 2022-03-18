@@ -1,4 +1,5 @@
-
+@import "_global.scss";
+@import "_colors.scss";
 .table-wrapper{
   height:80vh;
   overflow-x:hidden;
@@ -6,21 +7,53 @@
   border:1px solid lightgray;
   border-radius: 5px;
   
-  thead th{
+  .table-header{
     position:sticky;
     top:0;
     background: white;
   }
+  .table-settings{
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
   tbody{
     padding:5px;
   }
-  span{ 
+  .sort-text{ 
     position: absolute; 
     right: 8px;
     padding-left: 4px; 
     top: 5px; 
   }
 }
+input[type=checkbox] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  /* create custom checkbox appearance */
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  padding: 4px;
+  /* background-color only for content */
+  background-clip: content-box;
+  border: 1.5px solid $gray;
+  border-radius: 50px;
+  background-color: $light;
 
+  &:checked{
+      background-color: $gray;
+      border-radius: 6px;
+  }
 
+  &:focus{
+      outline: none !important;
+  }
+  &:hover{
+    background-color: $gray;
+    border-radius: 6px;
 
+  }
+}
