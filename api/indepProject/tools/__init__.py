@@ -1,5 +1,5 @@
 from .data_extractor import insert_enrollment,insert_student,insert_course,build_enrollments
 from .data_extractor import upload_course_data,upload_person_data,upload_and_extract,text_to_dictionary_list,roundTime
-from .data_retreiver import get_masterlist_data,get_state_variables
+from .data_retreiver import get_masterlist_data,get_state_variables, get_cohort
 from .prereq_funcs import get_rank_credit_hours, get_rank_prereqs
-from .config_funcs import get_matrix_courses, get_matrix_year, get_non_core_totals,get_course_type,get_replacement
+from .config_funcs import get_matrix_courses, get_non_core_totals,get_course_type,get_replacement,handle_replacements

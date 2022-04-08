@@ -31,8 +31,9 @@ Calculating status:
   - set status to CLEAR TO GRADUATE if they do
 """
 from indepProject.models import Enrollment,Course,Dataset,Student
-from indepProject.tools.config_funcs import get_matrix_courses,get_matrix_year,get_non_core_totals,get_course_type,get_replacement
+from indepProject.tools.config_funcs import handle_replacements,get_matrix_courses,get_non_core_totals,get_course_type,get_replacement
 from ..models.shared import db
+from indepProject.tools.data_retreiver import get_cohort
 
 # master function for populating the students status in the db
 def populate_status(dataset_date_time):
@@ -59,7 +60,7 @@ def get_status(student_id):
     if enrollment.course_id=="CS*1073" and enrollment.grade not in failing_grades:
       status="IN PROGRESS"
 
-  matrix_year = get_matrix_year(student.start_date)
+  matrix_year=get_cohort(student_id)
   matrix_courses=get_matrix_courses(matrix_year)
 
   # deal with replacements in both matrix and student courses to give consistency between them
@@ -74,7 +75,6 @@ def get_status(student_id):
   
   # if they have not registered for all of the core courses, no need to check the electives can just leave IN PROGRESS
   if core_course_count != len(matrix_courses):
-    print(status)
     return status
 
   # if they have completed all of the core courses, check for electives
@@ -99,11 +99,13 @@ def get_status(student_id):
       matrix_non_core_courses[course_type]-=1
       matrix_courses.append(course)
 
-  #------------
+  # TEST PRINT------------
   # for enrollment in student_enrollments:
   #   if(enrollment.course_id.replace("*","") in matrix_courses):
   #     matrix_courses.remove(enrollment.course_id.replace("*",""))
   # pretty_print_list(matrix_courses)
+  # ----------------------
+
   # if there is a type of elective that doesnt have all courses registered then student is IN PROGRESS
   for value in matrix_non_core_courses.values():
     if value >0:
@@ -127,14 +129,6 @@ def get_status(student_id):
     if len(student_enrollments) == 0:
       status="CLEAR TO GRADUATE"
   return status
-
-# Function will translate course_list courses to the newest courses as per the replacements
-def handle_replacements(course_list):
-  for i in range(0,len(course_list)-1):
-    temp=get_replacement(course_list[i])
-    if temp is not None:
-      course_list[i]=temp;
-  return course_list
 
 # HELPER FUNCTION~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 def pretty_print_list(item_list):

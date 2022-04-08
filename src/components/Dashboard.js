@@ -19,6 +19,10 @@ import Counts from "./Counts";
  * Where should the data set be selectable
  * What should be the identified for these selectable datasets?
  * Should it be the upload date? start date range? etc
+ *
+ * Add text to dropdown for rank calculation
+ * --> Rank by Credit Hour
+ * --> Rank by Prereqs
  */
 
 const Dashboard = () => {

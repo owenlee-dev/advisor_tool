@@ -33,6 +33,6 @@ def get_count_range_parameters():
     semesters.append(semester)
 
   semesters.sort(reverse=True)
-  semesters = semesters[1:]  # THIS IS TO REMOVE A STUPID WEIRD T AT THE FRONT
+  semesters = semesters[1:]  # THIS IS TO REMOVE A WEIRD T AT THE FRONT
 
   return {"cohorts": cohorts, "semesters": semesters}

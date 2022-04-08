@@ -1,3 +1,4 @@
+from dataclasses import replace
 import pandas as pd
 import math
 import os
@@ -23,6 +24,12 @@ def set_config_file():
   # call the sheets by doing "excel_in_dict[sheet_name_to_call]"
   for sheet_name in xls.sheet_names:
       excel_in_dict[sheet_name] = xls.parse(sheet_name)
+
+# function will add an astrix between course name and number ex// CS*1003
+def add_astrix(course_id:str): 
+  course_number=course_id[-4:]
+  course_name=course_id[:-4]
+  return "*".join([course_name,course_number])
 
 # Function will take in a course code and return the type of course (BASSCI, CSE-ITS etc)
 def get_course_type(course_id:str):
@@ -124,7 +131,6 @@ def get_matrix_courses(matrix_year):
         course_codes_only = re.findall(r"\b[A-Z]{2,4}[0-9]{2,4}\b", str(value))
         if course_codes_only:
           course_list += course_codes_only
-
   return course_list
 
 # Function will return number of each non core course types in the specified matrix
@@ -168,21 +174,22 @@ def is_exception(course_id:str,course_type:str):
 
   return course_id in excel_in_dict["exceptions"][course_type].to_list()
 
+
 # Function will check if course has a replacement course code
 # returns replacement code or None if it is not in the excel sheet
 # Author: Elliot Chin
 def get_replacement(course_id:str):
+  if not config_file:
+    set_config_file();
+
   # fix the formatting of course_code
   course_id = course_id.replace(" ", "")
   course_id = course_id.replace("*", "")
-
   # gets the replacement sheet in excel
   replacement_sheet = excel_in_dict["replacements"]
-
   # converts all the replacments from sheet into a dict
   all_years = replacement_sheet.set_index("ALL YEARS")["Unnamed: 1"].to_dict()
   before_2019 = replacement_sheet.set_index("Before 2019")["Unnamed: 3"].to_dict()
-
   # combine all the replacment dict to a single dict
   all_years.update(before_2019)
 
@@ -193,7 +200,7 @@ def get_replacement(course_id:str):
         return key
   return None
 
-# Functino will return true if the course is a core course
+# Function will return true if the course is a core course
 def is_core(course_code, year=None):
 
   core_courses = get_all_core_courses(year)
@@ -210,12 +217,13 @@ def is_core(course_code, year=None):
   else:
     return course_code in core_courses
 
-# function will take in a data "2020-09-01" and return "2020-2021"
-def get_matrix_year(start_date:str):
-  #TODO Probably need to workshop how we get this date ie which semester coorelates to which matrix year
-  #TODO Should include a drop down to pick which matrix year user wants to use
-  date_parts=start_date.split('-')
-  year=date_parts[0];
-  year += "-" + str(int(year[1:]) + 1)
-  return year
+  # Function will translate course_list courses to the newest courses as per the replacements
+def handle_replacements(course_list):
+  for i in range(0,len(course_list)):
+    temp=get_replacement(course_list[i])
+    if temp is not None:
+      if("*" not in temp):
+        temp=add_astrix(temp)
+      course_list[i]=temp;
+  return course_list
   

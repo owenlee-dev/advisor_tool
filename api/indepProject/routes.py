@@ -1,11 +1,13 @@
 import os
 import json
+from sys import audit
 from .counts import semester_get_coop_counts,cohort_get_coop_counts,get_count_range_parameters,cohort_get_total_students,cohort_get_rank_counts,semester_get_rank_counts
+from .audits import audit_student
 from indepProject import app
 from flask import render_template, session, request, flash, redirect, url_for
-from .tools import upload_and_extract,get_state_variables, text_to_dictionary_list,get_masterlist_data,get_matrix_courses,get_matrix_year
+from .tools import handle_replacements,get_cohort,upload_and_extract,get_state_variables, text_to_dictionary_list,get_masterlist_data,get_matrix_courses
 from .models.shared import db
-from .models import User, Student
+from .models import User, Student,Dataset
 
 from indepProject.status import get_status
 
@@ -128,15 +130,16 @@ def check_for_config():
 def get_count_ranges():
   return get_count_range_parameters();
 
+#TODO make sure these datasets get changed to be dynamic with whatever dataset is being looked at
 @app.route("/get_cohort_rank_counts",methods=['GET'])
 def get_cohort_rank_counts():
   range=request.args['rangeParameter']
-  return cohort_get_rank_counts("2022-03-07 16:00:29.000000",range);
+  return cohort_get_rank_counts(get_most_recent_dataset(),range);
 
 @app.route("/get_semester_rank_counts",methods=['GET'])
 def get_semester_rank_counts():
   range=request.args['rangeParameter']
-  return semester_get_rank_counts("2022-03-07 16:00:29.000000",range);
+  return semester_get_rank_counts(get_most_recent_dataset(),range);
 
 @app.route("/get_coop_counts",methods=['GET'])
 def get_coop_counts():
@@ -144,14 +147,22 @@ def get_coop_counts():
   range=request.args['range']
   print(range)
   if type=="Cohort":
-    return str(cohort_get_coop_counts("2022-03-07 16:00:29.000000",range))
+    return str(cohort_get_coop_counts(get_most_recent_dataset(),range))
   else:
-    return str(semester_get_coop_counts("2022-03-07 16:00:29.000000",range))
+    return str(semester_get_coop_counts(get_most_recent_dataset(),range))
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+def get_most_recent_dataset():
+  dataset=Dataset.query.first();
+  return dataset.upload_datetime
+
 @app.route("/test_function",methods=['GET'])
 def test_function():
-  print(semester_get_coop_counts("2022-03-07 16:00:29.000000",'2021/WI'))
+  # course_list=handle_replacements(['PHYS*1081','SWE*4040'])
+  # for course in course_list:
+  #   print(course)
+  # get_status('5004617')
+  audit_student('5458398')
   return "this is a test function"
 
 

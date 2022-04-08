@@ -35,3 +35,20 @@ def get_masterlist_data(rank_method:str):
 def get_state_variables():
   with open("indepProject/data/state/state.json","r") as json_file:
     return json.load(json_file);
+
+# function will return a students cohort, given their student_id
+def get_cohort(student_id):
+  student=Student.query.filter_by(student_id=student_id).first();
+  start_date=student.start_date;
+  start_date = start_date[0:len(start_date)-3]
+  year = start_date[:4]
+  month = start_date[5:]
+  # If a student starts in sept then they are a part of the
+  # currentYear-nextYear cohort
+  # If a student starts in the winter or summer term, then they are
+  # a part of the previousYear-currentYear cohort
+  if int(month) == 9:
+    year += "-" + str(int(year[1:]) + 1)
+  else:
+    year = '%s%s%s' % (str(int(year) - 1), "-", year[2:])
+  return year

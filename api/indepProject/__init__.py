@@ -12,7 +12,7 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS']=False
 with app.app_context():
   db.init_app(app)
 
-  # to flush database uncomment below
+  # to flush database uncomment below + save
   # db.drop_all();
   
   db.create_all()
