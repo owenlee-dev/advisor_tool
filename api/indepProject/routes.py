@@ -96,7 +96,7 @@ def get_masterlist():
 
 @app.route("/get_app_state",methods=['GET'])
 def get_app_state():
-  return get_state_variables();
+  return get_state_variables()
 
 @app.route("/set_global_rank",methods=['POST'])
 def set_global_state():
@@ -128,32 +128,37 @@ def check_for_config():
 
 @app.route("/get_count_ranges",methods=['GET'])
 def get_count_ranges():
-  return get_count_range_parameters();
+  return get_count_range_parameters()
 
 #TODO make sure these datasets get changed to be dynamic with whatever dataset is being looked at
 @app.route("/get_cohort_rank_counts",methods=['GET'])
 def get_cohort_rank_counts():
   range=request.args['rangeParameter']
-  return cohort_get_rank_counts(get_most_recent_dataset(),range);
+  return cohort_get_rank_counts(get_most_recent_dataset(),range)
 
 @app.route("/get_semester_rank_counts",methods=['GET'])
 def get_semester_rank_counts():
   range=request.args['rangeParameter']
-  return semester_get_rank_counts(get_most_recent_dataset(),range);
+  return semester_get_rank_counts(get_most_recent_dataset(),range)
 
 @app.route("/get_coop_counts",methods=['GET'])
 def get_coop_counts():
   type=request.args['type']
   range=request.args['range']
-  print(range)
   if type=="Cohort":
     return str(cohort_get_coop_counts(get_most_recent_dataset(),range))
   else:
     return str(semester_get_coop_counts(get_most_recent_dataset(),range))
 
+@app.route("/get_student_audit",methods=['GET'])
+def get_student_audit():
+  student_id=request.args['student_id']
+  student_audit=audit_student(student_id)
+  return student_audit.toJSON()
+
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 def get_most_recent_dataset():
-  dataset=Dataset.query.first();
+  dataset=Dataset.query.first()
   return dataset.upload_datetime
 
 @app.route("/test_function",methods=['GET'])

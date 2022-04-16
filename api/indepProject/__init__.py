@@ -13,7 +13,7 @@ with app.app_context():
   db.init_app(app)
 
   # to flush database uncomment below + save
-  # db.drop_all();
+  # db.drop_all()
   
   db.create_all()
 

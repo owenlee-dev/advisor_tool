@@ -137,6 +137,17 @@ const getCoopCounts = (type, range) => {
   return result;
 };
 
+const auditStudent=(student_id)=>{
+  const result = axios
+    .get("/get_student_audit", {
+      params: { student_id },
+    })
+    .then((res) => {
+      return res.data;
+    });
+  return result;
+}
+
 const testFuncion = () => {
   const result = axios.get("/test_function").then((res) => {
     return res.data;
@@ -157,5 +168,6 @@ export default {
   getCohortRankCounts,
   getSemesterRankCounts,
   getCoopCounts,
+  auditStudent,
   testFuncion,
 };

@@ -48,7 +48,7 @@ def get_status(student_id):
   failing_grades=['D','F','W','WF', ""]
 
   # initialize status to just enetered
-  status="JUST ENTERED";
+  status="JUST ENTERED"
 
   student_enrollments=Enrollment.query.filter_by(student_id=student_id)
   student=Student.query.filter_by(student_id=student_id).first()
@@ -64,14 +64,14 @@ def get_status(student_id):
   matrix_courses=get_matrix_courses(matrix_year)
 
   # deal with replacements in both matrix and student courses to give consistency between them
-  matrix_courses=handle_replacements(matrix_courses);
-  student_courses=handle_replacements(student_courses);
+  matrix_courses=handle_replacements(matrix_courses)
+  student_courses=handle_replacements(student_courses)
 
   # For improved performance check if registered for all core courses before checking for electives
   core_course_count=0    
   for course in matrix_courses:
     if course in student_courses:
-      core_course_count+=1;
+      core_course_count+=1
   
   # if they have not registered for all of the core courses, no need to check the electives can just leave IN PROGRESS
   if core_course_count != len(matrix_courses):
@@ -109,7 +109,7 @@ def get_status(student_id):
   # if there is a type of elective that doesnt have all courses registered then student is IN PROGRESS
   for value in matrix_non_core_courses.values():
     if value >0:
-      return status;
+      return status
 
   status="EXPECTED TO GRADUATE"
 

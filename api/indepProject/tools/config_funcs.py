@@ -1,4 +1,3 @@
-from dataclasses import replace
 import pandas as pd
 import math
 import os
@@ -11,7 +10,7 @@ Authors: Owen Lee, Elliot Chin
 
 # global variables
 excel_in_dict = {}
-config_file=None;
+config_file=None
 
 # Function to initialize the global variables
 def set_config_file():
@@ -117,9 +116,9 @@ def get_all_core_courses(year=None):
 # Function will return a list of courses in the matrix given year
 # Author : Elliot Chin
 def get_matrix_courses(matrix_year):
-  global config_file,excel_in_dict;
+  global config_file,excel_in_dict
   if not config_file:
-    set_config_file();
+    set_config_file()
 
   course_list = []
   matrix = excel_in_dict[matrix_year]
@@ -135,11 +134,11 @@ def get_matrix_courses(matrix_year):
 
 # Function will return number of each non core course types in the specified matrix
 def get_non_core_totals(matrix_year):
-  global config_file,excel_in_dict;
+  global config_file,excel_in_dict
   matrix_non_core_courses={"BASSCI":0,"CSE-OPEN":0,"CSE-HSS":0, "CSE-ITS":0,"TE":0}
 
   if not config_file:
-    set_config_file();
+    set_config_file()
 
   matrix = excel_in_dict[matrix_year]
 
@@ -148,7 +147,7 @@ def get_non_core_totals(matrix_year):
       if type(value) is not float and type(value) is str:
         value=value.replace(" ","")
         if value in matrix_non_core_courses:
-          matrix_non_core_courses[value]+=1;
+          matrix_non_core_courses[value]+=1
 
   return matrix_non_core_courses
 
@@ -180,7 +179,7 @@ def is_exception(course_id:str,course_type:str):
 # Author: Elliot Chin
 def get_replacement(course_id:str):
   if not config_file:
-    set_config_file();
+    set_config_file()
 
   # fix the formatting of course_code
   course_id = course_id.replace(" ", "")
@@ -217,13 +216,13 @@ def is_core(course_code, year=None):
   else:
     return course_code in core_courses
 
-  # Function will translate course_list courses to the newest courses as per the replacements
+# Function will translate course_list courses to the newest courses as per the replacements
 def handle_replacements(course_list):
   for i in range(0,len(course_list)):
     temp=get_replacement(course_list[i])
     if temp is not None:
       if("*" not in temp):
         temp=add_astrix(temp)
-      course_list[i]=temp;
+      course_list[i]=temp
   return course_list
   

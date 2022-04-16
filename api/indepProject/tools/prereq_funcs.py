@@ -24,7 +24,7 @@ def get_rank_prereqs():
 
   xls=pd.ExcelFile(prereq_file)
 
-  df=xls.parse("Sheet1");
+  df=xls.parse("Sheet1")
   for rank in ranks:
     rank_prereqs[rank]=df[rank].dropna().to_dict()
     rank_prereqs[rank].pop(0)
@@ -39,7 +39,7 @@ def get_rank_credit_hours():
     set_prereq_file()
 
   xls=pd.ExcelFile(prereq_file)
-  df=xls.parse("Sheet1");
+  df=xls.parse("Sheet1")
   for rank in ranks:
     rank_credit_hours[rank]=df[rank].dropna().to_dict()[0]
   return rank_credit_hours

@@ -58,7 +58,7 @@ def semester_get_rank_counts(dataset_date,term):
   rank_method=state['rankMethod']
 
   # list of students enrolled in term
-  students_in_term=list(Enrollment.query.filter_by(term=term).with_entities(Enrollment.student_id).distinct());
+  students_in_term=list(Enrollment.query.filter_by(term=term).with_entities(Enrollment.student_id).distinct())
   for i in range(0, len(students_in_term)):
     students_in_term[i]=students_in_term[i]['student_id']
 

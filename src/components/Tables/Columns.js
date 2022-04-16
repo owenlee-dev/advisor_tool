@@ -31,3 +31,18 @@ export const columns = [
     filter: "includes",
   },
 ];
+
+export const AuditColumns = [
+  {
+    Header: "Term",
+    accessor: "term",
+  },
+  {
+    Header: "Course ID",
+    accessor: "course_id",
+  },
+  {
+    Header: "Grade",
+    accessor: "grade",
+  },
+];

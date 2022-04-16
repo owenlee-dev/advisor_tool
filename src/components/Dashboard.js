@@ -13,6 +13,8 @@ import DataContext from "./DataContext";
 import api from "../api/api";
 import "../styles/Dashboard.scss";
 import Counts from "./Counts";
+import Audits from "./Audits";
+import AuditTable from "./Tables/AuditTable"
 
 /**
  * Question for Dawn
@@ -100,7 +102,7 @@ const Dashboard = () => {
           <Row className="count-row">
             <Counts />
           </Row>
-          <Row className="audit-row">AUDIT</Row>
+          <Row className="audit-row"><Audits/></Row>
         </Col>
         <Col className="col-7 list-container">
           <MasterList />
