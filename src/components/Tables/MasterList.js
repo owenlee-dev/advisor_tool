@@ -1,13 +1,11 @@
 import React, { useMemo, useState, useEffect, useContext } from "react";
 import { Table, Button } from "react-bootstrap";
-import TableScrollbar from "react-table-scrollbar";
 import {
   useTable,
   useSortBy,
   useGlobalFilter,
   useRowSelect,
   useFilters,
-  useAbsoluteLayout,
 } from "react-table";
 import "../../styles/MasterList.scss";
 import DataContext from "../DataContext";
@@ -22,13 +20,15 @@ import { CheckBox } from "./CheckBox";
 
 const MasterList = () => {
   const [data, setData] = useState([]);
-  const { masterData, rankMethod } = useContext(DataContext);
+  const { masterData, rankMethod, setSelectedStudent, selectedStudent } =
+    useContext(DataContext);
 
   //set table values to the state master data
   useEffect(() => {
     if (masterData.length == 0) {
       const fetchData = async () => {
         const master = await api.getMasterList(rankMethod);
+        setSelectedStudent(JSON.stringify(master[0]));
         setData(master);
       };
       fetchData();
@@ -64,6 +64,10 @@ const MasterList = () => {
     }),
     []
   );
+
+  const selectStudent = (row, cell) => {
+    setSelectedStudent(JSON.stringify(row.original));
+  };
 
   const {
     getTableProps,
@@ -119,7 +123,7 @@ const MasterList = () => {
           <thead>
             <tr>
               <th colSpan={visibleColumns.length}>
-                <div className="table-settings">
+                <div className="table-setting-buttons">
                   <GlobalFilter
                     preGlobalFilteredRows={preGlobalFilteredRows}
                     globalFilter={state.globalFilter}
@@ -155,7 +159,14 @@ const MasterList = () => {
                 <tr {...row.getRowProps()}>
                   {row.cells.map((cell) => {
                     return (
-                      <td {...cell.getCellProps()}>{cell.render("Cell")}</td>
+                      <td
+                        onClick={() => {
+                          setSelectedStudent(JSON.stringify(row.original));
+                        }}
+                        {...cell.getCellProps()}
+                      >
+                        {cell.render("Cell")}
+                      </td>
                     );
                   })}
                 </tr>

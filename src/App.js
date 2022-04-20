@@ -10,7 +10,8 @@ function App() {
   const [masterData, setMasterData] = useState([]);
   const [rankMethod, setRankMethod] = useState("Course");
   const [dataLoading, setDataLoading] = useState(false);
-
+  const [audit, setAudit] = useState({});
+  const [selectedStudent, setSelectedStudent] = useState();
   // state management - useMemo used so that it only fetches when it needs to
   const providerValue = useMemo(
     () => ({
@@ -20,6 +21,10 @@ function App() {
       setRankMethod,
       dataLoading,
       setDataLoading,
+      audit,
+      setAudit,
+      selectedStudent,
+      setSelectedStudent,
     }),
     [
       masterData,
@@ -28,6 +33,10 @@ function App() {
       setRankMethod,
       dataLoading,
       setDataLoading,
+      audit,
+      setAudit,
+      selectedStudent,
+      setSelectedStudent,
     ]
   );
 

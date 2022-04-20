@@ -14,7 +14,7 @@ import api from "../api/api";
 import "../styles/Dashboard.scss";
 import Counts from "./Counts";
 import Audits from "./Audits";
-import AuditTable from "./Tables/AuditTable"
+import AuditTable from "./Tables/AuditTable";
 
 /**
  * Question for Dawn
@@ -89,20 +89,17 @@ const Dashboard = () => {
               </Dropdown.Item>
             </DropdownButton>
           </div>
-          <div className="btn-container">
-            <Button variant="outline-light" onClick={() => api.testFuncion()}>
-              TEST
-            </Button>
-          </div>
         </Col>
         <Col className="col-1"></Col>
       </Row>
       <Row className="console-content">
         <Col className="col-3 count-audit-col">
-          <Row className="count-row">
+          <div className="count-row">
             <Counts />
-          </Row>
-          <Row className="audit-row"><Audits/></Row>
+          </div>
+          <div className="audit-row">
+            <Audits />
+          </div>
         </Col>
         <Col className="col-7 list-container">
           <MasterList />

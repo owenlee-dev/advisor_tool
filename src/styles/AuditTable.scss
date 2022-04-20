@@ -1,0 +1,31 @@
+@import "_global.scss";
+@import "_colors.scss";
+
+.audit-table{
+  display:flex;
+  max-height:26vh;
+  overflow:auto;
+  text-align: center;
+  padding:0px;
+  border:1px solid $dark;
+  border-radius: 5px;
+
+  .table-header{
+    position:sticky;
+    border:1px solid $dark;
+    top:0;
+    background-color: $light;
+  }
+  tbody{
+    font-size: 0.8rem;
+  }
+  td{
+    border:1px solid $dark;
+    padding:2%;
+  }
+  .table-settings{
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+}

@@ -65,10 +65,14 @@ def audit_student(student_id):
     # handle replacements and formatting differences
     if replacement_course_id:
       if "*" not in replacement_course_id:
-        replacement_course_id=add_astrix(replacement_course_id)
+        replacemensyhmt_course_id=add_astrix(replacement_course_id)
       temp_course_id=replacement_course_id
 
-    audit_course=AuditCourse(temp_course_id,get_course_type(enrollment.course_id),0.0,enrollment.grade,enrollment.term)
+    course_type=get_course_type(enrollment.course_id)
+    if course_type=="NS":
+      course_type="BASSCI"
+
+    audit_course=AuditCourse(temp_course_id,course_type,0.0,enrollment.grade,enrollment.term)
     all_courses_taken.append(audit_course)
 
   # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -85,7 +89,8 @@ def audit_student(student_id):
       core_courses[i]=add_astrix(core_courses[i])
 
   non_core_courses=get_non_core_totals(cohort)
-  course_type_needed={'CORE':len(core_courses), **non_core_courses}
+  total_needed=sum(non_core_courses.values())+len(core_courses)
+  course_type_needed={'ALL':total_needed,'CORE':len(core_courses), **non_core_courses}
   
   # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   student_audit.course_type_needed=course_type_needed
@@ -110,6 +115,7 @@ def audit_student(student_id):
     course_type_taken[course_type]+=1;  
 
   course_type_taken['CORE']=len(core_courses_taken)
+  course_type_taken['ALL']=sum(course_type_taken.values())
 
   # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   student_audit.course_type_taken=course_type_taken

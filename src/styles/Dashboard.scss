@@ -22,6 +22,7 @@
     margin-top:1%;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
+    border-bottom:4px solid $medium_1;
     background-color:$medium_2 ;    
   }
   
@@ -44,25 +45,25 @@
   }
   .count-audit-col{  
     display:flex;
+    height:80vh;
+    justify-content: center;
     flex-direction: column;
-
     background-color: $light;
   }
 
   .count-row{
     display:flex;
-    border:1px solid $gray;
     border-bottom: 0px;
     height:45%;
     padding:10px;
+    border-bottom:3px solid $gray;
   }
 
   .audit-row{   
-    border:1px solid $gray;
+    height:60%;
+    overflow:auto;
+    margin-top:5%;
     border-top:0px;
-    justify-content: center;
-    align-items: center;
-    height:65%;
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
 
