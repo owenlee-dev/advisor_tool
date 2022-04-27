@@ -48,6 +48,7 @@ const Audits = () => {
   // get audit object
   // fetch new audit object when new student gets selected
   useEffect(() => {
+    console.log(audit);
     const fetchAudit = async () => {
       if (selectedStudent) {
         const auditObject = await api.auditStudent(
