@@ -18,7 +18,7 @@ def home():
     return render_template('home.html',usergroup=session['usergroup'].capitalize())
   return render_template('login.html')
     
-# Login path sends to login page
+# Login path sends to login page (depricated, not used in final version)
 @app.route('/check_login_credentials', methods=['GET','POST'])
 def login_user():
   if request.method=="POST":
@@ -31,7 +31,7 @@ def login_user():
       session['usergroup']=current_user.usergroup
   return session
    
-# Register path sends to register page
+# Register path sends to register page (depricated, not used in final version)
 @app.route("/register_user", methods=['GET','POST'])
 def register_user():
   if request.method=="POST":
@@ -53,7 +53,7 @@ def register_user():
       return "true"
   return "false"
 
-# Logout path returns home
+# Logout path returns home (depricated, not used in final version)
 @app.route("/logout")
 def logout():
   session.pop('username',None)

@@ -46,7 +46,7 @@ pass_grades = {"nan", "CR", "C-", "C", "C+", "B-", "B", "B+", "A-", "A", "A+", "
 
 # Function to perform an audit on a student
 def audit_student(student_id):
-
+  
   # define the structures we are going to fill by performing the audit
   all_courses_taken=[]
   all_courses_needed={}
